@@ -1,0 +1,189 @@
+#include "my.h"
+#include <stdio.h>
+#include <limits.h>
+
+int main(void)
+{	
+	char t0[] = "Hello";
+	char* t1 = (char*) malloc(sizeof(char) * 5);
+	char* t2 = (char*) malloc(sizeof(char) * 5);
+	t2[0] = 'a';
+	char t3[] = "abcde";
+	char t4[] = "abfaa";
+	char t5[] = "yo";
+	char t6[] = "lo";
+
+	//Testing my_strindex
+	my_str("TESTING my_strindex\n");
+	my_str("-------------------\n");
+	my_str(my_strindex(t0,'l'));
+	my_str(" = llo\n");
+	my_str(my_strindex(t0,'e'));
+	my_str(" = ello\n");
+	my_str(my_strindex(t0,'z'));
+	my_str("shouldn't blow up\n");
+	my_str(my_strindex(t0,'\0'));
+	my_str("shouldn't blow up\n");
+	my_str(my_strindex("",'l'));
+	my_str("shouldn't blow up\n");
+	my_str(my_strindex(NULL,'l'));
+	my_str("shouldn't blow up\n");
+	my_str("\n");
+
+	//Testing my_strrindex
+	my_str("TESTING my_strrindex\n");
+	my_str("-------------------\n");
+	my_str(my_strrindex(t0,'l'));
+	my_str(" = lo\n");
+	my_str(my_strrindex(t0,'e'));
+	my_str(" = ello\n");
+	my_str(my_strrindex(t0,'z'));
+	my_str("shouldn't blow up\n");
+	my_str(my_strrindex(t0,'\0'));
+	my_str("shouldn't blow up\n");
+	my_str(my_strrindex("",'l'));
+	my_str("shouldn't blow up\n");
+	my_str(my_strrindex(NULL,'l'));
+	my_str("shouldn't blow up\n");
+	my_str("\n");
+
+	//Testing my_strcat
+	my_str("TESTING my_strcat\n");
+	my_str("-------------------\n");
+	my_str(my_strcat(t1,t0));
+	my_str(" = Hello\n");
+	my_str(t1);
+	my_str(" = Hello\n");
+	my_str(my_strcat(t1,NULL));
+	my_str(" = Hello\n");
+	my_str(my_strcat(NULL,t0));
+	my_str("shouldn't blow up\n");
+	my_str(my_strcat(NULL,NULL));
+	my_str("shouldn't blow up\n");
+	my_str(my_strcat(t2,"bc"));
+	my_str(" = abc\n");
+	my_str("\n");
+
+	//Testing my_strcmp
+	my_str("TESTING my_strcmp\n");
+	my_str("-------------------\n");
+	my_int(my_strcmp(t3,t4));
+	my_str(" = -3\n");
+	my_int(my_strcmp(t3,t3));
+	my_str(" = 0\n");
+	my_int(my_strcmp(t4,t3));
+	my_str(" = 3\n");
+	my_int(my_strcmp(t4,NULL));
+	my_str(" should be positive\n");
+	my_int(my_strcmp(NULL,t3));
+	my_str(" should be negative\n");
+	my_int(my_strcmp(NULL,NULL));
+	my_str(" = 0\n");
+	my_int(my_strcmp(t4,""));
+	my_str(" should be positive\n");
+	my_str("\n");
+
+	//Testing my_strncmp
+	my_str("TESTING my_strncmp\n");
+	my_str("-------------------\n");
+	my_int(my_strncmp(t3,t4,5));
+	my_str(" = -3\n");
+	my_int(my_strncmp(t3,t3,5));
+	my_str(" = 0\n");
+	my_int(my_strncmp(t4,t3,2));
+	my_str(" = 0\n");
+	my_int(my_strncmp(t4,NULL,5));
+	my_str(" should be positive\n");
+	my_int(my_strncmp(NULL,t3,5));
+	my_str(" should be negative\n");
+	my_int(my_strncmp(NULL,NULL,5));
+	my_str(" = 0\n");
+	my_int(my_strncmp(t4,"",2));
+	my_str(" should be positive\n");
+	my_str("\n");
+
+	//Testing my_strconcat
+	my_str("TESTING my_strconcat\n");
+	my_str("-------------------\n");
+    my_str(my_strconcat(t5, t6));
+    my_str(" = yolo\n");
+    my_str("t5 should still be yo: ");
+    my_str(t5);
+    my_str("\n");
+    my_str("t6 should still be lo: ");
+    my_str(t6);
+    my_str("\n");
+    my_str(my_strconcat("", ""));
+    my_str(my_strconcat(NULL,NULL));
+    my_str(my_strconcat("blah", "blah"));
+    my_str("\nTesting strnconcat\n");
+    my_str(my_strnconcat("blah", "blah", 2));
+
+    my_str("\nTesting strcpy\n");
+    /*
+    char b[] = "Hello\0\0\0\0";
+    
+    my_str(my_strcpy(b +3, b));
+    */
+    my_str("\n");
+    
+    char meme[20] = "meme";
+    my_str(my_strcpy(meme, "dank"));
+    my_str("\n");
+    my_str(meme);
+    my_str("\n");
+
+    my_str("Testing strncpy\n");
+    my_str(my_strncpy(meme, "oogabooga", 7));
+    my_str("\n");
+
+    my_str("Testing mystrdup\n");
+    my_strdup("kill me");
+    my_strdup(NULL);
+    my_strdup("");
+
+    
+	 my_char('\n');
+    char *str2vstr = "hello this is a vector";
+    char **resultvec = my_str2vect(str2vstr);
+    my_str(resultvec[0]);
+    my_str(resultvec[1]);
+    my_str(resultvec[2]);
+    my_str(resultvec[3]);
+    my_str(resultvec[4]);
+    my_char('\n');
+
+    my_char('\n');
+    char *vstr1 = my_strdup("hello");
+    char *vstr2 = my_strdup("this");
+    char *vstr3 = my_strdup("is");
+    char *vstr4 = my_strdup("a");
+    char *vstr5 = my_strdup("string");
+    char **v2sv = (char**)malloc(sizeof(char*) * (6));
+    v2sv[0] = vstr1;
+    v2sv[1] = vstr2;
+    v2sv[2] = vstr3;
+    v2sv[3] = vstr4;
+    v2sv[4] = vstr5;
+    v2sv[5] = NULL;
+    char* resultantstring = my_vect2str(v2sv);
+    my_str(resultantstring);
+    my_char('\n');
+
+    my_char('\n');
+    my_str(my_strindex('\0', '\0'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+	return 0;
+}

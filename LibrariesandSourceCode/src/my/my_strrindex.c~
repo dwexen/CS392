@@ -1,0 +1,6 @@
+#include "my.h"
+
+char *my_strrindex(char* a, char b)
+{
+    return 0;
+}

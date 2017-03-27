@@ -1,0 +1,14 @@
+#include "my.h"
+
+void    my_freevect(char** vect)
+{
+	int count;
+	if(vect != NULL)
+	{
+		for(count = 0; vect[count]; count++)
+		{
+			free(vect[count]);
+		}
+		free(vect);
+	}
+}

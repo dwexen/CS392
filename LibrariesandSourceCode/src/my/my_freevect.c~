@@ -1,0 +1,19 @@
+#include "my.h"
+
+void    my_freevect(char** vect)
+{
+	int count;
+
+	if(vect != NULL)
+	{
+		my_str("In the if statement");
+		for(count = 0; vect[count]; count++)
+		{
+			my_int(count);
+			free(vect[count]);
+		}
+		my_str("past the for loop");
+		free(vect);
+		my_str("ok");
+	}
+}
